@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./src/assets/fonts-colors.scss";
+@import "./src/assets/styles/fonts-colors.scss";
 *, *:before, *:after{
   box-sizing: inherit;
 }
@@ -32,9 +32,9 @@ body{
 ul{
   list-style: none;
 }
-a{
+a, button{
   text-decoration: inherit;
-  &:hover, button:hover{
+  &:hover{
     cursor: pointer;
   }
 }

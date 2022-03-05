@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/fonts-colors.scss";
+@import "../assets/styles/fonts-colors.scss";
 header{
   width: 100%;
   display: flex;
