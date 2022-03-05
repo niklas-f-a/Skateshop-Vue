@@ -1,32 +1,49 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <Header />
     <router-view/>
+    <Footer />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
+export default {
+  components: {Header, Footer}
 }
+</script>
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<style lang="scss">
+@import "./src/assets/fonts-colors.scss";
+*, *:before, *:after{
+  box-sizing: inherit;
+}
+html, body, h1, h2, h3, h4, h5, ul, a{
+  margin: 0;
+  padding: 0;
+}
+html{
+  box-sizing: border-box;
+}
+body{
+  line-height: 1;
+}
+ul{
+  list-style: none;
+}
+a{
+  text-decoration: inherit;
+  &:hover, button:hover{
+    cursor: pointer;
   }
+}
+h1, h2, h3, h4, h5, p, a{
+  font-family: $my-font;
+}
+#app{
+  width: 100vw;
+  // max-width: 1440px;
+  height: 100vh;
 }
 </style>
