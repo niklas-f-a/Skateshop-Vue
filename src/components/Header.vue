@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="top">
-      <figure>
+      <figure @click="$router.push('/')">
         <img :src="logo" alt="">
       </figure>
       <div class="search-bar">
@@ -12,11 +12,11 @@
       <span><img :src="shoppingCartIcon"></span>
     </div>
     <nav>
-      <router-link to="">Home</router-link>
-      <router-link to="">Skatebording</router-link>
-      <router-link to="">Kläder</router-link>
-      <router-link to="">Tillbehör</router-link>
-      <router-link to="">Special Edition</router-link>
+      <router-link to="/">Home</router-link>
+      <router-link :to="{name: 'Products', params:{category: 'Skateboards'}}">Skatebording</router-link>
+      <router-link :to="{name: 'Products', params:{category: 'Apparels'}}">Kläder</router-link>
+      <router-link :to="{name: 'Products', params:{category: 'Accessories'}}">Tillbehör</router-link>
+      <router-link :to="{name: 'Products', params:{category: 'Special-Edition'}}">Special Edition</router-link>
     </nav>
   </header>
 </template>
@@ -45,6 +45,9 @@ header{
     figure{
       margin: .2rem .5rem;
       width: 8rem;
+      &:hover{
+        cursor: pointer;
+      }
       img{
         max-width: 100%;
         max-height: 100%;

@@ -17,10 +17,12 @@
         <h3>Wooden patterns</h3>
         <button>Learn more</button>
       </div>
-      <figure v-for="board in naturalSeries" :key="board.id">
-        <img :src="`${BASE_URL}/images/${board.imgFile}`">
-      </figure>
-    </section>
+      <!-- <div class="board-images">
+        <figure v-for="board in naturalSeries" :key="board.id">
+          <img :src="`${BASE_URL}/images/${board.imgFile}`">
+        </figure>
+      </div> -->
+    </section>    
     <ProductsByFour :products="secondFourProducts"/>
     <InspirationSectionImages />
     <ProductsByFour :products="thirdFourProducts"/>
@@ -78,7 +80,7 @@ main{
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode: overlay;
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     margin-bottom: 3rem;
@@ -151,18 +153,21 @@ main{
         border-radius: 4px;
       }
     }
-    figure:nth-child(3){
-      transform: translateX(2rem);
-    }
-    figure:nth-child(2){
-      transform: translateX(4rem);
-    }
-    figure{
-      height: 20rem;
-      margin: 0;
-      img{
-        max-width: 100%;
-        max-height: 100%;
+    .board-images{
+      display: flex;
+      figure:nth-child(1){
+        transform: translateX(4.5rem);
+      }
+      figure:nth-child(2){
+        transform: translateX(2.5rem);
+      }
+      figure{
+        height: 20rem;
+        margin: 0;
+        img{
+          max-width: 100%;
+          max-height: 100%;
+        }
       }
     }
   }

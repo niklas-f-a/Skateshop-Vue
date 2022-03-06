@@ -43,7 +43,9 @@ h1, h2, h3, h4, h5, p, a{
 }
 #app{
   width: 100vw;
-  // max-width: 1440px;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
