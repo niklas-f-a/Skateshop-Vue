@@ -10,18 +10,25 @@
         <img v-if="promoProduct" :src="`${BASE_URL}/images/${promoProduct.imgFile}`" alt="">
       </figure>
     </section>
+    <ProductsByFour />
   </main>
 </template>
 
 <script>
 import Action from '@/store/Action.types.js'
+import ProductsByFour from '@/components/ProductsByFour.vue'
+
 export default {
+  components: {ProductsByFour},
   data(){return{
     BASE_URL: process.env.VUE_APP_BASE_URL,
-    promoProductId: 16
+    promoProductId: 16,
+    firstPagesOfProducts: [1, 2]
   }},
   async mounted(){
     await this.$store.dispatch(Action.GET_ONE_PRODUCT, this.promoProductId)
+    this.firstPagesOfProducts.forEach(page => this.$store.dispatch(Action.GET_PRODUCTS_BY_PAGE, page))
+    
   },
   computed: {
     promoProduct(){

@@ -1,3 +1,7 @@
 export const GET_ONE_PRODUCT = 'GET_ONE_PRODUCT'
+export const GET_PRODUCTS_BY_PAGE = 'GET_PRODUCTS_BY_PAGE'
 
-export default {GET_ONE_PRODUCT}
+export default {
+    GET_ONE_PRODUCT,
+    GET_PRODUCTS_BY_PAGE
+}
