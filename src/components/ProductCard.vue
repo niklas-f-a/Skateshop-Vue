@@ -6,7 +6,7 @@
 		<div class="card-info">
 			<h3>product</h3>
 			<h4>{{product.title}}</h4>
-			<p>{{product.longDesc}}</p>
+			<p>{{product.shortDesc}}</p>
 			<span>
 				<p>{{product.price}} :-</p>
 				<button>Add to cart</button>
@@ -31,7 +31,7 @@ export default {
 @import "../assets/styles/fonts-colors.scss";
 .card-info{
 	padding: 1rem;
-	height: 13rem;
+	height: 12rem;
 	width: 100%;
 	display: flex;
 	flex-direction: column;

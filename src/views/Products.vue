@@ -68,7 +68,8 @@ export default {
 				return this.$store.getters.accessories
 			}
 			if(this.categoryTitle == 'Special-Edition'){
-				return this.$store.getters.specialEdition
+				const product = [...this.$store.getters.specialEdition, ...this.$store.getters.naturalSeries]
+				return product
 			}
 			else return null
 
