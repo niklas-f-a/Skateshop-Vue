@@ -37,6 +37,14 @@ export default new Vuex.Store({
     async [Action.GET_PRODUCTS_BY_PAGE]({commit}, page){
       const response = await API.getProductsByPage(page)
       commit(Mutation.SAVE_PRODUCTS, response.data)
+    },
+    async [Action.GET_CATEGORY]({commit}, category){
+      const response = await API.getProductsByCategory(category)
+      commit(Mutation.SAVE_PRODUCTS, response.data)
+    },
+    async [Action.GET_SEARCH]({commit}, searchWord){
+      const response = await API.getSearch(searchWord)
+      commit(Mutation.SAVE_PRODUCTS, response.data)
     }
   },
   getters: {
@@ -45,6 +53,25 @@ export default new Vuex.Store({
     }, 
     naturalSeries(state){
       return state.naturalSeriesId.map(productId => state.products[productId])
+    }, 
+    skateBoardsAndWheels(state){
+      return state.productList.filter(product => product.category == 'skateboard' || product.category == 'wheel')
+    },
+    apparel(state){
+      return state.productList.filter((product) => 
+        product.category == 'hoodie' || 
+        product.category == 'tshirt' || 
+        product.category == 'socks'
+      )
+    },
+    accessories(state){
+      return state.productList.filter((product) => 
+        product.category == 'cap' ||
+        product.category == 'totebag'
+      )
+    },
+    specialEdition(state){
+      return state.productList.filter(product => product.specialEdition)
     }
   },
   modules: {

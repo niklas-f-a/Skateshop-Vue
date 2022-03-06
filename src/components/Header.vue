@@ -14,8 +14,8 @@
     <nav>
       <router-link to="/">Home</router-link>
       <router-link :to="{name: 'Products', params:{category: 'Skateboards'}}">Skatebording</router-link>
-      <router-link :to="{name: 'Products', params:{category: 'Apparels'}}">Kläder</router-link>
-      <router-link :to="{name: 'Products', params:{category: 'Accessories'}}">Tillbehör</router-link>
+      <router-link :to="{name: 'Products', params:{category: 'Kläder'}}">Kläder</router-link>
+      <router-link :to="{name: 'Products', params:{category: 'Tillbehör'}}">Tillbehör</router-link>
       <router-link :to="{name: 'Products', params:{category: 'Special-Edition'}}">Special Edition</router-link>
     </nav>
   </header>

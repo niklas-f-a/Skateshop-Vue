@@ -43,6 +43,7 @@ export default {
 	margin: .5rem;
 	overflow: hidden;
 	figure{
+		padding: 1rem 0 1rem 0;
 		margin: 0;
 		width: 100%;
 		height: 10rem;
