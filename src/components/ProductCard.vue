@@ -11,7 +11,6 @@
 				<p>{{product.price}} :-</p>
 				<button>Add to cart</button>
 			</span>
-
 		</div>
   </article>
 </template>
