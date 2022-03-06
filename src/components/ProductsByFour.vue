@@ -1,16 +1,26 @@
 <template>
   <section class="products-by-four">
-    <ProductCard />
+    <ProductCard v-for="product in products" :key="product.id"
+      :product="product"
+    />
   </section>
 </template>
 
 <script>
 import ProductCard from "@/components/ProductCard.vue"
 export default {
+  props: {
+    products: Array
+  },
   components: {ProductCard}
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.products-by-four{
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
 </style>

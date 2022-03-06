@@ -9,7 +9,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     productList: [],
-    products: {}
+    products: {}, 
+    naturalSeriesId: [13, 14, 17], 
+    promoProductId: 16,
   },
   mutations: {
     [Mutation.SAVE_PRODUCTS](state, products){
@@ -35,6 +37,14 @@ export default new Vuex.Store({
     async [Action.GET_PRODUCTS_BY_PAGE]({commit}, page){
       const response = await API.getProductsByPage(page)
       commit(Mutation.SAVE_PRODUCTS, response.data)
+    }
+  },
+  getters: {
+    promoProduct(state){
+      return state.products[state.promoProductId]
+    }, 
+    naturalSeries(state){
+      return state.naturalSeriesId.map(productId => state.products[productId])
     }
   },
   modules: {

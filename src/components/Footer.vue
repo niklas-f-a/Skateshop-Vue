@@ -48,6 +48,7 @@ footer{
   justify-content: center;
   justify-content: space-around;
   padding: 2rem 5rem;
+  margin-top: 4rem;
   h5{
     color: $orange;
     font-size: 16px;
