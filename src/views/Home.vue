@@ -17,11 +17,11 @@
         <h3>Wooden patterns</h3>
         <button>Learn more</button>
       </div>
-      <div class="board-images">
+      <!-- <div class="board-images">
         <figure v-for="board in naturalSeries" :key="board.id">
           <img :src="`${BASE_URL}/images/${board.imgFile}`">
         </figure>
-      </div>
+      </div> -->
     </section>    
     <ProductsByFour :products="secondFourProducts"/>
     <InspirationSectionImages />

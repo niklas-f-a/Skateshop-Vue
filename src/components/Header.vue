@@ -77,6 +77,11 @@ header{
       border: 1px solid $black;
       border-radius: 4px;
       margin-left: .5rem;
+      transition: background-color 1s;
+      &:hover{
+        cursor: pointer;
+        background-color: $orange;
+      }
       img{
         max-width: 100%;
         max-height: 100%;

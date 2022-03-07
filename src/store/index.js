@@ -12,6 +12,7 @@ export default new Vuex.Store({
     products: {}, 
     naturalSeriesId: [13, 14, 17], 
     promoProductId: 16,
+    cart: []
   },
   mutations: {
     [Mutation.SAVE_PRODUCTS](state, products){
@@ -27,9 +28,20 @@ export default new Vuex.Store({
         state.productList.push(product)
         Vue.set(state.products, product.id, product)
       }
+    }, 
+    [Mutation.ADD_TO_CART](state, id){
+      const product = state.cart.find(product => product.id == id)
+      if(product){
+        product.amount++
+      }else{
+        state.cart.push({id, amount:1})
+      }
     }
   },
   actions: {
+    [Action.ADD_TO_CART]({commit}, {id}){
+      commit(Mutation.ADD_TO_CART, id)
+    },
     async [Action.GET_ONE_PRODUCT]({commit}, id){
       const response = await API.getProductById(id)
       commit(Mutation.SAVE_ONE_PRODUCT ,response.data.post)
