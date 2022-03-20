@@ -11,18 +11,7 @@
       </figure>
     </section>
     <ProductsByFour :products="firstFourProducts"/>
-    <section class="natural-series" >
-      <div class="overlay">
-        <h2>Natural-series</h2>
-        <h3>Wooden patterns</h3>
-        <button>Learn more</button>
-      </div>
-      <!-- <div class="board-images">
-        <figure v-for="board in naturalSeries" :key="board.id">
-          <img :src="`${BASE_URL}/images/${board.imgFile}`">
-        </figure>
-      </div> -->
-    </section>    
+    <NaturalSeriesBanner :naturalSeries="naturalSeries" />
     <ProductsByFour :products="secondFourProducts"/>
     <InspirationSectionImages />
     <ProductsByFour :products="thirdFourProducts"/>
@@ -34,9 +23,9 @@
 import Action from '@/store/Action.types.js'
 import ProductsByFour from '@/components/ProductsByFour.vue'
 import InspirationSectionImages from '@/components/InspirationSectionImages.vue'
-
+import NaturalSeriesBanner from '@/components/NaturalSeriesBanner.vue'
 export default {
-  components: {ProductsByFour, InspirationSectionImages},
+  components: {ProductsByFour, InspirationSectionImages, NaturalSeriesBanner},
   data(){return{
     BASE_URL: process.env.VUE_APP_BASE_URL,
     firstPagesOfProducts: [1, 2], 
@@ -44,17 +33,13 @@ export default {
   async mounted(){
     await this.$store.dispatch(Action.GET_ONE_PRODUCT, this.$store.state.promoProductId)
     await this.firstPagesOfProducts.forEach(page => this.$store.dispatch(Action.GET_PRODUCTS_BY_PAGE, page))
-    
   },
   computed: {
     promoProduct(){
       return this.$store.getters.promoProduct
     },
     naturalSeries(){
-      if(this.$store.getters.naturalSeries.length){
-        return this.$store.getters.naturalSeries
-      }
-      else return null
+      return this.$store.getters.naturalSeries
     },
     firstFourProducts(){
       return this.$store.state.productList.slice(0, 4)
