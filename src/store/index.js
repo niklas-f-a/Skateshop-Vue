@@ -36,9 +36,26 @@ export default new Vuex.Store({
       }else{
         state.cart.push({id, amount:1})
       }
+    }, 
+    [Mutation.DECREASE_ITEM_IN_CART](state, id){
+      const productToDecrease = state.cart.find(product => product.id == id)
+      if(productToDecrease.amount == 1){
+        return productToDecrease.amount = 1
+      }else{
+        productToDecrease.amount--
+      }
+    }, 
+    [Mutation.REMOVE_FROM_CART](state, id){
+      state.cart.splice(state.cart.findIndex(product => product.id == id), 1)
     }
   },
   actions: {
+    [Action.REMOVE_FROM_CART]({commit}, id){
+      commit(Mutation.REMOVE_FROM_CART, id)
+    },
+    [Action.DECREASE_ITEM_IN_CART]({commit}, id){
+      commit(Mutation.DECREASE_ITEM_IN_CART, id)
+    },
     [Action.ADD_TO_CART]({commit}, {id}){
       commit(Mutation.ADD_TO_CART, id)
     },
@@ -60,6 +77,11 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    totalCost(state){
+      return state.cart.reduce((acc, cur) => {
+        return acc + cur.amount * state.products[cur.id].price
+      }, 0)
+    },
     promoProduct(state){
       return state.products[state.promoProductId]
     }, 

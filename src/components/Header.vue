@@ -9,7 +9,7 @@
         <i><img :src="searchIcon"></i>
       </div>
       <span><img :src="logInIcon"></span>
-      <span><img :src="shoppingCartIcon"></span>
+      <span @click="$router.push('/Cart')"><img :src="shoppingCartIcon"></span>
     </div>
     <nav>
       <router-link to="/">Home</router-link>

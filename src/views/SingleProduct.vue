@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ProductCard :product="product" singleProduct/>
+    <ProductCard :productId="productId" singleProduct/>
   </section>
 </template>
 
@@ -9,8 +9,8 @@ import ProductCard from "@/components/ProductCard.vue"
 export default {
   components: {ProductCard},
   computed: {
-    product(){
-      return this.$store.state.products[this.$route.params.id]
+    productId(){
+      return this.$route.params.id
     }
   }
 }

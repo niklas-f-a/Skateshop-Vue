@@ -4,7 +4,7 @@
 			<div class="line"></div>
 			<section class="product-cards">
 				<ProductCard class="card" v-for="product in categoryProducts" :key="product.id" 
-					:product="product"
+					:productId="product.id"
 				/>
 			</section>
   </section>

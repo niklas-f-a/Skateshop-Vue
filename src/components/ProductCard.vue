@@ -1,20 +1,37 @@
 <template>
   <article class="product-card"
     @click="$router.push(`/product/${product.id}`)"
-    :class="{singleProduct}"
+    :class="{singleProduct, inCart}"
   >
 		<figure>
 			<img :src="`${BASE_URL}/images/${product.imgFile}`">
 		</figure>
 		<div class="card-info">
+			<i class="delete-icon" 
+				v-if="inCart"
+				@click.stop="removeItemFromCart(productId)"
+				>
+					<img :src="trashIcon">
+			</i>
 			<h3 v-if="!singleProduct">product</h3>
 			<h4 v-if="!singleProduct">{{product.title}}</h4>
 			<h1 v-else>{{product.title}}</h1>
 			<p>{{product.shortDesc}}</p>
-			<p v-if="singleProduct">{{product.longDesc}}</p>
+			<p v-if="singleProduct || inCart">{{product.longDesc}}</p>
 			<span>
-				<p>{{product.price}} :-</p>
-				<button @click.stop="addToCart(product)">Add to cart</button>
+				<span class="in-cart-controller" v-if="inCart">
+					<button @click.stop="decrease(productId)">-</button>
+					<p>{{amount}}</p>
+					<button @click.stop="addToCart(product)">+</button>
+				</span>
+				<p v-if="inCart">{{totalPriceForProduct}} :-</p>
+				<p v-else>{{product.price}} :-</p>
+				<button 
+					@click.stop="addToCart(product)"
+					v-if="!inCart"
+				>
+					Add to cart
+				</button>
 			</span>
 		</div>
   </article>
@@ -24,22 +41,74 @@
 import Action from "@/store/Action.types.js"
 export default {
 	props: {
-		product: Object,
-    singleProduct: Boolean
+		productId: Number,
+    singleProduct: Boolean,
+		inCart: Boolean
 	},
   methods: {
     addToCart(product){
       this.$store.dispatch(Action.ADD_TO_CART, product)
-    }
+    }, 
+		decrease(id){
+			this.$store.dispatch(Action.DECREASE_ITEM_IN_CART, id)
+		}, 
+		removeItemFromCart(id){
+			this.$store.dispatch(Action.REMOVE_FROM_CART, id)
+		}
   },
 	data(){return{
 		BASE_URL: process.env.VUE_APP_BASE_URL,
-	}}
+		trashIcon: require('@/assets/images/trash-can-solid.svg')
+	}},
+	computed: {
+		product(){
+			return this.$store.state.products[this.productId]
+		}, 
+		amount(){
+			return this.$store.state.cart.find(product => this.productId == product.id).amount
+		}, 
+		totalPriceForProduct(){
+			return this.amount * this.product.price
+		}
+	}
 }
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/styles/fonts-colors.scss";
+.inCart.product-card{
+	display: flex;
+	width: 25rem;
+	height: 10rem;
+	.card-info{
+		height: 100%;
+		font-size: 70%;
+		justify-content: center;
+		position: relative;
+		.delete-icon{
+			width: .8rem;
+			position: absolute;
+			top: .6rem;
+			right: .8rem;
+			&:hover{
+				cursor: pointer;
+			}
+		}
+	}
+	figure{
+		width: 70%;
+		height: 100%
+	}
+	.in-cart-controller{
+		button{
+			margin: 0 .4rem;
+			width: 1.5rem;
+			height: 1.5rem;
+			border-radius: 50%;
+			padding: 0rem;
+		}
+	}
+}
 .singleProduct.product-card{
   width: 50rem;
   height: 25rem;
@@ -49,7 +118,6 @@ export default {
   figure{
     height: 100%;
     width: 50%;
-    padding: 5rem;
   }
   .card-info{
     height: 100%;
@@ -124,6 +192,9 @@ export default {
 			&:hover{
 				background-color: $white;
 				color: $black;
+			}
+			&:active{
+				transform: scale(1.05);
 			}
 		}
 	}

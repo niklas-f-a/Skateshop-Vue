@@ -28,6 +28,7 @@ html{
 }
 body{
   line-height: 1;
+  background-color: #F9F9F9;
 }
 ul{
   list-style: none;
