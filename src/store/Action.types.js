@@ -5,6 +5,10 @@ export const GET_SEARCH = 'GET_SEARCH'
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const DECREASE_ITEM_IN_CART = 'DECREASE_ITEM_IN_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+export const REGISTER_ORDER = 'REGISTER_ORDER'
+export const CLEAR_ERROR = 'CLEAR_ERROR'
+export const EMPTY_CART = "EMPTY_CART"
+
 
 export default {
     GET_ONE_PRODUCT,
@@ -13,5 +17,8 @@ export default {
     GET_SEARCH,
     ADD_TO_CART,
     DECREASE_ITEM_IN_CART, 
-    REMOVE_FROM_CART
+    REMOVE_FROM_CART, 
+    REGISTER_ORDER, 
+    CLEAR_ERROR, 
+    EMPTY_CART
 }

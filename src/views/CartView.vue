@@ -11,8 +11,12 @@
     </div>
     <form
       v-if="inCartProducts.length"
-      @submit.prevent="look"
+      @submit.prevent="$router.push('/Checkout')"    
       >
+      <span>
+        <p>Leveransavg.</p>
+        <p class="price">0:-</p>
+      </span>
       <div class="line"></div>
       <input type="text" placeholder="Ange rabattkod">
       <div class="line"></div>
@@ -79,6 +83,10 @@ export default {
     font-size: 1rem;
     &:hover{
       cursor: pointer;
+    }
+    &:active{
+      background-color: $orange;
+      color: #000000;
     }
   }
   input{

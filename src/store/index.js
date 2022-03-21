@@ -2,12 +2,15 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as API from '@/API/API.js'
 import Action from './Action.types.js'
-import Mutation from './Mutation.types.js'
+import Mutation, { SET_ERROR_ON_PAGE } from './Mutation.types.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    error: {
+      messageOnPage: ""
+    },
     productList: [],
     products: {}, 
     naturalSeriesId: [13, 14, 17], 
@@ -47,9 +50,24 @@ export default new Vuex.Store({
     }, 
     [Mutation.REMOVE_FROM_CART](state, id){
       state.cart.splice(state.cart.findIndex(product => product.id == id), 1)
+    }, 
+    [Mutation.SET_ERROR_ON_PAGE](state, error){
+      state.error.messageOnPage = error
+    }, 
+    [Mutation.CLEAR_ERROR](state){
+      state.error.messageOnPage = ""
+    },
+    [Mutation.EMPTY_CART](state){
+      state.cart = []
     }
   },
   actions: {
+    [Action.EMPTY_CART]({commit}){
+      commit(Mutation.EMPTY_CART)
+    },
+    [Action.CLEAR_ERROR]({commit}){
+      commit(Mutation.CLEAR_ERROR)
+    },
     [Action.REMOVE_FROM_CART]({commit}, id){
       commit(Mutation.REMOVE_FROM_CART, id)
     },
@@ -74,6 +92,12 @@ export default new Vuex.Store({
     async [Action.GET_SEARCH]({commit}, searchWord){
       const response = await API.getSearch(searchWord)
       commit(Mutation.SAVE_PRODUCTS, response.data)
+    }, 
+    async [Action.REGISTER_ORDER]({commit}, payload){
+       const response = await API.registerOrder(payload)
+       if(response.error){
+         commit(SET_ERROR_ON_PAGE, response.error)
+       }  
     }
   },
   getters: {
