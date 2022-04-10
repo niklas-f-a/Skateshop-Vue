@@ -22,6 +22,7 @@ export default new Vuex.Store({
     naturalSeriesId: [13, 14, 17], 
     promoProductId: 16,
     cart: [],
+    updateInfoForm: false
   },
   mutations: {
     [Mutation.SAVE_PRODUCTS](state, products){
@@ -70,8 +71,8 @@ export default new Vuex.Store({
     [Mutation.EMPTY_CART](state){
       state.cart = []
     }, 
-    [Mutation.LOG_IN](state){
-      state.loggedIn = true
+    [Mutation.LOG_IN_LOG_OUT](state){
+      state.loggedIn = !state.loggedIn
     }, 
     [Mutation.SAVE_ORDER_HISTORY](state, orders){
       state.orders = orders
@@ -84,9 +85,23 @@ export default new Vuex.Store({
     },
     [Mutation.STORE_USER_INFO](state, userInfo){
       state.user = userInfo
+    },
+    [Mutation.DISPOSE_USER](state){
+      state.user = {}
+    },
+    [Mutation.TOGGLE_UPDATE_INFO](state){
+      state.updateInfoForm = !state.updateInfoForm
     }
   },
   actions: {
+    [Action.TOGGLE_UPDATE_INFO]({commit}){
+      commit(Mutation.TOGGLE_UPDATE_INFO)
+    },
+    [Action.LOG_OUT]({commit}){
+      commit(Mutation.LOG_IN_LOG_OUT)
+      commit(Mutation.DISPOSE_USER)
+      API.clearToken()
+    },
     [Action.STORE_USER_INFO]({commit}, userInfo){
       commit(Mutation.STORE_USER_INFO, userInfo)
     },
@@ -103,7 +118,7 @@ export default new Vuex.Store({
         commit(Mutation.SET_ERROR_ON_MODAL, response.error)
       }else{
         API.setToken(response.data.token)
-        commit(Mutation.LOG_IN)
+        commit(Mutation.LOG_IN_LOG_OUT)
         commit(Mutation.CLEAR_ERROR)
       }
     },

@@ -12,6 +12,9 @@ export const LOG_IN = "LOG_IN"
 export const SAVE_ORDER_HISTORY = "SAVE_ORDER_HISTORY"
 export const CHANGE_MODAL = "CHANGE_MODAL"
 export const STORE_USER_INFO = "STORE_USER_INFO"
+export const LOG_IN_LOG_OUT = "LOG_IN_LOG_OUT"
+export const DISPOSE_USER = "DISPOSE_USER"
+export const TOGGLE_UPDATE_INFO = "TOGGLE_UPDATE_INFO"
 
 export default {
     SAVE_PRODUCTS, 
@@ -27,5 +30,8 @@ export default {
     LOG_IN, 
     SAVE_ORDER_HISTORY,
     CHANGE_MODAL,
-    STORE_USER_INFO
+    STORE_USER_INFO,
+    LOG_IN_LOG_OUT,
+    DISPOSE_USER,
+    TOGGLE_UPDATE_INFO
 }

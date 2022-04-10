@@ -6,6 +6,10 @@ export async function setToken(token){
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }
 
+export async function clearToken(){
+  axios.defaults.headers.common['Authorization'] = 'Bearer '
+}
+
 export async function getProductById(id){
   return await axios.get(`/items/${id}`)
 }

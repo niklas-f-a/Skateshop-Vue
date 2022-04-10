@@ -1,12 +1,12 @@
 <template>
-  <div v-if="login" class="fade-overlay"></div>
+  <div v-if="modal" class="fade-overlay"></div>
 </template>
 
 <script>
 export default {
   computed: {
-    login(){
-      return this.$store.state.loginModal
+    modal(){
+      return this.$store.state.showModal
     }
   }
 }

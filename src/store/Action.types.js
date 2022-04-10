@@ -15,6 +15,8 @@ export const GET_ORDER_HISTORY = "GET_ORDER_HISTORY"
 export const CHANGE_MODAL = "CHANGE_MODAL"
 export const REGISTER_USER = "REGISTER_USER"
 export const STORE_USER_INFO = "STORE_USER_INFO"
+export const LOG_OUT = "LOG_OUT"
+export const TOGGLE_UPDATE_INFO = "TOGGLE_UPDATE_INFO"
 
 
 export default {
@@ -34,5 +36,7 @@ export default {
     GET_ORDER_HISTORY,
     CHANGE_MODAL,
     REGISTER_USER,
-    STORE_USER_INFO
+    STORE_USER_INFO,
+    LOG_OUT,
+    TOGGLE_UPDATE_INFO
 }
