@@ -8,14 +8,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    orders: [],
+    user: {},
+    loggedIn: false,
     error: {
-      messageOnPage: ""
+      messageOnPage: "", 
+      messageOnModal: ""
     },
+    showModal: false,
+    currentModal: 'login',
     productList: [],
     products: {}, 
     naturalSeriesId: [13, 14, 17], 
     promoProductId: 16,
-    cart: []
+    cart: [],
   },
   mutations: {
     [Mutation.SAVE_PRODUCTS](state, products){
@@ -54,14 +60,67 @@ export default new Vuex.Store({
     [Mutation.SET_ERROR_ON_PAGE](state, error){
       state.error.messageOnPage = error
     }, 
+    [Mutation.SET_ERROR_ON_MODAL](state, error){
+      state.error.messageOnModal = error
+    }, 
     [Mutation.CLEAR_ERROR](state){
       state.error.messageOnPage = ""
+      state.error.messageOnModal = ""
     },
     [Mutation.EMPTY_CART](state){
       state.cart = []
+    }, 
+    [Mutation.LOG_IN](state){
+      state.loggedIn = true
+    }, 
+    [Mutation.SAVE_ORDER_HISTORY](state, orders){
+      state.orders = orders
+    },
+    [Mutation.TOGGLE_SHOW_MODAL](state){
+      state.showModal = !state.showModal
+    },
+    [Mutation.CHANGE_MODAL](state, toModal){
+      state.currentModal = toModal
+    },
+    [Mutation.STORE_USER_INFO](state, userInfo){
+      state.user = userInfo
     }
   },
   actions: {
+    [Action.STORE_USER_INFO]({commit}, userInfo){
+      commit(Mutation.STORE_USER_INFO, userInfo)
+    },
+    [Action.CHANGE_MODAL]({commit}, toModal){
+      commit(Mutation.CHANGE_MODAL, toModal)
+    },
+    async [Action.GET_ORDER_HISTORY]({commit}){
+      const response = await API.getOrderHistory()
+      commit(Mutation.SAVE_ORDER_HISTORY, response.data)
+    },
+    async [Action.LOG_IN]({commit}, user){
+      const response = await API.logIn(user)
+      if(response.error){
+        commit(Mutation.SET_ERROR_ON_MODAL, response.error)
+      }else{
+        API.setToken(response.data.token)
+        commit(Mutation.LOG_IN)
+        commit(Mutation.CLEAR_ERROR)
+      }
+    },
+    async [Action.REGISTER_USER]({commit}, newUser){
+      const response = await API.registerUser(newUser)
+      if(response.error){
+        commit(Mutation.SET_ERROR_ON_MODAL, response.error)
+      }
+      else{
+        API.setToken(response.data.token)
+        commit(Mutation.LOG_IN)
+        commit(Mutation.CLEAR_ERROR)
+      }
+    },
+    [Action.TOGGLE_SHOW_MODAL]({commit}){
+      commit(Mutation.TOGGLE_SHOW_MODAL)
+    },
     [Action.EMPTY_CART]({commit}){
       commit(Mutation.EMPTY_CART)
     },

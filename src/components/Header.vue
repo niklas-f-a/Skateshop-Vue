@@ -8,7 +8,15 @@
         <input type="search" placeholder="Sök efter...">
         <i><img :src="searchIcon"></i>
       </div>
-      <span><img :src="logInIcon"></span>
+      <span v-if="!loggedIn" 
+        @click="toggleLoginModal">
+        <img :src="logInIcon">
+        <p>Log in</p>
+      </span>
+      <span v-else-if="loggedIn" @click="$router.push('/Profile')">
+      <img :src="logInIcon"> 
+        <p>Profile</p>
+      </span>
       <span @click="$router.push('/Cart')"><img :src="shoppingCartIcon"></span>
     </div>
     <nav>
@@ -22,13 +30,24 @@
 </template>
 
 <script>
+import Action from "@/store/Action.types"
 export default {
   data(){return{
     logo: require('@/assets/images/sinus-header-logo.png'),
     searchIcon: require('@/assets/images/Icon_search.svg'),
     logInIcon: require('@/assets/images/login-icon.svg'),
     shoppingCartIcon: require('@/assets/images/shopping-cart-icon.svg')
-}}
+  }}, 
+  methods:{
+    toggleLoginModal(){
+      this.$store.dispatch(Action.TOGGLE_SHOW_MODAL)
+    }
+  }, 
+  computed: {
+    loggedIn(){
+      return this.$store.state.loggedIn
+    }
+  }
 }
 </script>
 
@@ -72,6 +91,7 @@ header{
       width: 2.5rem;
       height: 2.5rem;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       border: 1px solid $black;
@@ -85,6 +105,10 @@ header{
       img{
         max-width: 100%;
         max-height: 100%;
+      }
+      p{
+        margin: .1rem;
+        font-size: 50%;
       }
     }
   }

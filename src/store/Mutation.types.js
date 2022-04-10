@@ -6,6 +6,12 @@ export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export const SET_ERROR_ON_PAGE = 'SET_ERROR_ON_PAGE'
 export const CLEAR_ERROR = 'CLEAR_ERROR'
 export const EMPTY_CART = "EMPTY_CART"
+export const TOGGLE_SHOW_MODAL = "TOGGLE_SHOW_MODAL"
+export const SET_ERROR_ON_MODAL = "SET_ERROR_ON_MODAL"
+export const LOG_IN = "LOG_IN"
+export const SAVE_ORDER_HISTORY = "SAVE_ORDER_HISTORY"
+export const CHANGE_MODAL = "CHANGE_MODAL"
+export const STORE_USER_INFO = "STORE_USER_INFO"
 
 export default {
     SAVE_PRODUCTS, 
@@ -15,5 +21,11 @@ export default {
     REMOVE_FROM_CART, 
     SET_ERROR_ON_PAGE, 
     CLEAR_ERROR, 
-    EMPTY_CART
+    EMPTY_CART, 
+    TOGGLE_SHOW_MODAL, 
+    SET_ERROR_ON_MODAL, 
+    LOG_IN, 
+    SAVE_ORDER_HISTORY,
+    CHANGE_MODAL,
+    STORE_USER_INFO
 }

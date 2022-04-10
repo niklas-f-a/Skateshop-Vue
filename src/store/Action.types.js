@@ -8,6 +8,13 @@ export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 export const REGISTER_ORDER = 'REGISTER_ORDER'
 export const CLEAR_ERROR = 'CLEAR_ERROR'
 export const EMPTY_CART = "EMPTY_CART"
+export const TOGGLE_SHOW_MODAL = "TOGGLE_SHOW_MODAL"
+export const LOG_IN = "LOG_IN"
+export const GET_ME = "GET_ME"
+export const GET_ORDER_HISTORY = "GET_ORDER_HISTORY"
+export const CHANGE_MODAL = "CHANGE_MODAL"
+export const REGISTER_USER = "REGISTER_USER"
+export const STORE_USER_INFO = "STORE_USER_INFO"
 
 
 export default {
@@ -20,5 +27,12 @@ export default {
     REMOVE_FROM_CART, 
     REGISTER_ORDER, 
     CLEAR_ERROR, 
-    EMPTY_CART
+    EMPTY_CART, 
+    TOGGLE_SHOW_MODAL, 
+    LOG_IN, 
+    GET_ME, 
+    GET_ORDER_HISTORY,
+    CHANGE_MODAL,
+    REGISTER_USER,
+    STORE_USER_INFO
 }

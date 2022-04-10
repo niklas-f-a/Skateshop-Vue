@@ -1,5 +1,5 @@
 <template>
-  <article class="product-card"
+  <article v-if="product" class="product-card"
     @click="$router.push(`/product/${product.id}`)"
     :class="{singleProduct, inCart}"
   >

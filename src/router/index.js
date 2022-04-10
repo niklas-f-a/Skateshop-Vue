@@ -5,6 +5,11 @@ import Products from "@/views/Products.vue"
 import Product from "@/views/SingleProduct.vue"
 import CartView from "@/views/CartView.vue"
 import Checkout from "@/views/Checkout.vue"
+import Profile from "@/views/Profile.vue"
+
+import * as API from "@/API/API"
+import Action from "@/store/Action.types"
+
 
 Vue.use(VueRouter)
 
@@ -33,6 +38,21 @@ const routes = [
     path: '/Checkout',
     name: 'Checkout',
     component: Checkout
+  },
+  {
+    path: '/Profile',
+    name: 'Profile',
+    component: Profile,
+    beforeEnter(to, from, next){
+      API.getMe().then( res => {
+        if(res.error){
+          next({name: 'Home'})
+        }else{
+          router.app.$store.dispatch(Action.STORE_USER_INFO, res.data)
+          next()
+        }
+      })   
+    }
   }
 ]
 

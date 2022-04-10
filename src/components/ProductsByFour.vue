@@ -1,7 +1,7 @@
 <template>
   <section class="products-by-four">
     <ProductCard v-for="product in products" :key="product.id"
-      :productID="product.id"
+      :productId="product.id"
     />
   </section>
 </template>
