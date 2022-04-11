@@ -17,6 +17,8 @@ export const REGISTER_USER = "REGISTER_USER"
 export const STORE_USER_INFO = "STORE_USER_INFO"
 export const LOG_OUT = "LOG_OUT"
 export const TOGGLE_UPDATE_INFO = "TOGGLE_UPDATE_INFO"
+export const UPDATE_USER = "UPDATE_USER"
+
 
 
 export default {
@@ -38,5 +40,6 @@ export default {
     REGISTER_USER,
     STORE_USER_INFO,
     LOG_OUT,
-    TOGGLE_UPDATE_INFO
+    TOGGLE_UPDATE_INFO,
+    UPDATE_USER
 }

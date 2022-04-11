@@ -69,3 +69,9 @@ export async function registerUser({email, name, password, address}){
     address
   })
 }
+
+export async function updateUserInfo(newInfo){
+  return await axios.patch('/me', 
+    newInfo
+  )
+}

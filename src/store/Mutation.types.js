@@ -16,6 +16,7 @@ export const LOG_IN_LOG_OUT = "LOG_IN_LOG_OUT"
 export const DISPOSE_USER = "DISPOSE_USER"
 export const TOGGLE_UPDATE_INFO = "TOGGLE_UPDATE_INFO"
 
+
 export default {
     SAVE_PRODUCTS, 
     SAVE_ONE_PRODUCT,
@@ -33,5 +34,5 @@ export default {
     STORE_USER_INFO,
     LOG_IN_LOG_OUT,
     DISPOSE_USER,
-    TOGGLE_UPDATE_INFO
+    TOGGLE_UPDATE_INFO,
 }

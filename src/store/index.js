@@ -91,7 +91,7 @@ export default new Vuex.Store({
     },
     [Mutation.TOGGLE_UPDATE_INFO](state){
       state.updateInfoForm = !state.updateInfoForm
-    }
+    },
   },
   actions: {
     [Action.TOGGLE_UPDATE_INFO]({commit}){
@@ -121,6 +121,11 @@ export default new Vuex.Store({
         commit(Mutation.LOG_IN_LOG_OUT)
         commit(Mutation.CLEAR_ERROR)
       }
+    },
+    async [Action.UPDATE_USER]({commit}, newInfo){
+      await API.updateUserInfo(newInfo)
+      commit(Mutation.DISPOSE_USER)
+      commit(Mutation.LOG_IN_LOG_OUT)
     },
     async [Action.REGISTER_USER]({commit}, newUser){
       const response = await API.registerUser(newUser)
