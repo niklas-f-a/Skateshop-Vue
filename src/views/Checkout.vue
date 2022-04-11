@@ -8,16 +8,16 @@
       v-else
     >
       <h4 class="error" v-if="error">{{error}}</h4>
-      <div class="form-content">
+      <div class="form-content" v-if="!user">
         <h1>Slutför din beställning</h1>
         <span class="flex">
           <div>
-            <label for="firstname">Förnamn</label>
-            <input v-model="firstName" type="text" name="firstname" placeholder="Bingo">
+            <label for="firstname">Name</label>
+            <input type="text" name="name" :placeholder="userName[0]">
           </div>
           <div>
             <label for="lastname">Efternamn</label>
-            <input v-model="lastName" type="text" name="lastname" placeholder="Berra">
+            <input type="text" name="lastname" :placeholder="userName[1]">
           </div>
         </span>
         <label for="deliveryadress">Leveransadress*</label><br>
@@ -30,6 +30,51 @@
           <div>
             <label for="postalcode">Postkod*</label>
             <input v-model="shippingAddress.zip" type="text" minlength="5" maxlength="5" placeholder="12345" name="postalcode" required>
+          </div>
+        </span>
+        <div class="divider"></div>
+        <div class="radiobuttons">
+          <h1>Hur vill du betala</h1>
+          <span>
+            <input checked="checked" type="radio" name="payment" id="card" value="card">
+            <label for="card">Med kort</label>
+            <i><img src="@/assets/images/credit-card-solid.svg"></i>
+          </span>
+          <div class="divider-small"></div>
+          <span>
+            <input type="radio" name="payment" id="invoice" value="invoice">
+            <label for="invoice">Faktura </label>
+            <p>Betala om 30 dagar</p>
+          </span>
+          <div class="divider-small"></div>
+          <span>
+            <input type="radio" name="payment" id="swish" value="swish">
+            <label for="swish">Swish</label>
+          </span> 
+        </div>
+      </div>
+      <div class="form-content" v-else>
+        <h1>Slutför din beställning</h1>
+        <span class="flex">
+          <div>
+            <label for="firstname">Name</label>
+            <input type="text" name="name" :value="userName[0]">
+          </div>
+          <div>
+            <label for="lastname">Efternamn</label>
+            <input type="text" name="lastname" :value="userName[1]">
+          </div>
+        </span>
+        <label for="deliveryadress">Leveransadress*</label><br>
+        <input class="deliveryinput" :value="user.address.street" type="text" name="deliveryadress" required>
+        <span  class="flex">
+          <div>
+            <label for="town">Stad*</label>
+            <input type="text" :value="user.address.city" name="town" required>
+          </div>
+          <div>
+            <label for="postalcode">Postkod*</label>
+            <input type="text" :value="user.address.zip" minlength="5" maxlength="5" placeholder="12345" name="postalcode" required>
           </div>
         </span>
         <div class="divider"></div>
@@ -66,8 +111,6 @@ export default {
   },
   data(){return{
     orderSent: false,
-    firstName: "", 
-    lastName: "", 
     shippingAddress: {
       city: "",
       street: "",
@@ -80,13 +123,29 @@ export default {
     }, 
     error(){
       return this.$store.state.error.messageOnPage
+    },
+    user(){
+      return this.$store.state.user
+    },
+    userName(){
+      return this.user.name.split(' ')
     }
   },
   methods: {
     async completeTransaction(){
+      let shippingAdress = {}
+      if(!this.user){
+        shippingAdress = this.shippingAddress
+      }else{
+        shippingAdress = {
+          city: this.user.address.city,
+          street: this.user.address.street,
+          zip: this.user.address.zip
+        }
+      }
       const infoToSend = {
         items: this.inCart.map(product => Array(product.amount).fill(product.id)).flat(), 
-        shippingAddress: this.shippingAddress
+        shippingAdress
       }
       await this.$store.dispatch(Action.REGISTER_ORDER, infoToSend)
       if(!this.error){

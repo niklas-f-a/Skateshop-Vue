@@ -37,7 +37,15 @@ const routes = [
   {
     path: '/Checkout',
     name: 'Checkout',
-    component: Checkout
+    component: Checkout,
+    beforeEnter(to, from, next){
+      if(router.app.$store.state.loggedIn){
+        API.getMe().then(res => {
+          router.app.$store.dispatch(Action.STORE_USER_INFO, res.data)
+        })
+      }
+      next()
+    }
   },
   {
     path: '/Profile',
