@@ -33,7 +33,7 @@
         <label for="Street">Street</label>
         <input v-model="newInfo.address.street" 
           :placeholder="user.address.street"
-          :class="{error: error.street}"  
+          :class="{error: error.street}"
           type="text" name="street" 
         >
         <small>{{error.street}}</small>

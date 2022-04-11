@@ -1,7 +1,7 @@
 <template>
   <section class="cart-view">
     <div class="left-side-container">
-      <h1>Din varukorg <span v-if="!inCartProducts.length">är tom</span></h1>
+      <h1>Your cart <span v-if="!inCartProducts.length">is empty</span></h1>
       
       <section class="cart">
         <article v-for="productInCart in inCartProducts" :key="productInCart.id">
@@ -14,17 +14,17 @@
       @submit.prevent="$router.push('/Checkout')"    
       >
       <span>
-        <p>Leveransavg.</p>
+        <p>Delivery fee.</p>
         <p class="price">0:-</p>
       </span>
       <div class="line"></div>
-      <input type="text" placeholder="Ange rabattkod">
+      <input type="text" placeholder="Discount code">
       <div class="line"></div>
       <span>
-        <p>Totalsumma</p>
+        <p>Total</p>
         <p class="price">{{totalCost}}:-</p>
       </span>
-      <button>Till Kassan</button>
+      <button>To checkout</button>
     </form>
   </section>
 </template>

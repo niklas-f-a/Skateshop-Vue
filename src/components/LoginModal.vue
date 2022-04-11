@@ -1,16 +1,16 @@
 <template>
   <dialog v-if="loginModalOpen && currentModal === 'login'" open>
     <span class="close" @click="closeModal"><Icon icon="ci:close-big" width="25" /></span>
-    <h2>Logga in</h2>
+    <h2>Login</h2>
     <form @submit.prevent="logIn">
       <label for="username">Email:</label>
       <input v-model="email" type="text">
-      <label for="password">Lösenord:</label>
+      <label for="password">Password:</label>
       <input v-model="password" type="password">
-      <button>Logga in</button>
+      <button>Login</button>
       <p v-if="error" class="error">{{error}}</p>
     </form>
-    <p @click="showSignUp">Skapa nytt konto</p>
+    <p @click="showSignUp">Create new account</p>
   </dialog>
   <RegistrationForm v-else-if="loginModalOpen && currentModal === 'signup'" />
 </template>

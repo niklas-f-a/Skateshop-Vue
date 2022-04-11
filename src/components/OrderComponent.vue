@@ -3,14 +3,14 @@
     <div class="left">
       <h5>Beställd: {{order.createdAt.split("T").join(" ").slice(0, -5)}}</h5>
       <div class="address">
-        <h5>Leveras till:</h5>
+        <h6>Leveras till:</h6>
         <p><strong>Stad:</strong> {{order.shippingCity}}</p>
         <p><strong>Adress:</strong> {{order.shippingStreet}}</p>
         <p><strong>Zip:</strong> {{order.shippingZip}}</p>
       </div>
       <p><strong>Status:</strong> {{order.status}}</p>
     </div>
-    <div class="right">
+    <div class="middle">
       <article v-for="item in order.items" :key="item.ProductId">
         <span>
           <p>{{products[item.ProductId].title}}</p>
@@ -23,12 +23,17 @@
         </span>
       </article>
     </div>
+    <div class="right">
+      <Icon icon="dashicons:arrow-down-alt2" />
+    </div>
   </article>
 </template>
 
 <script>
+import {Icon} from '@iconify/vue2'
 import Action from "@/store/Action.types"
 export default {
+  components: {Icon},
   props: {
     order: Object
   }, 
@@ -51,10 +56,16 @@ export default {
   padding: 1rem;
   border-radius: 4px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 40% 50% 10%;
+  height: 4rem;
+  overflow: hidden;
+  h6{
+    display: none;
+  }
   p{
     font-size: 12px;
     margin: 0 0 2px 0;
+    display: none;
   }
   .right{
     article{

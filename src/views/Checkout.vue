@@ -8,43 +8,43 @@
       v-else
     >
       <h4 class="error" v-if="error">{{error}}</h4>
-      <div class="form-content" v-if="!user">
-        <h1>Slutför din beställning</h1>
+      <div class="form-content" v-if="user.name">
+        <h1>Complete you order</h1>
         <span class="flex">
           <div>
-            <label for="firstname">Name</label>
-            <input type="text" name="name" :placeholder="userName[0]">
+            <label for="firstname">First name</label>
+            <input :value="userName[0]" type="text" name="name" >
           </div>
           <div>
-            <label for="lastname">Efternamn</label>
-            <input type="text" name="lastname" :placeholder="userName[1]">
+            <label for="lastname">Last name</label>
+            <input :value="userName[1]" type="text" name="lastname" >
           </div>
         </span>
-        <label for="deliveryadress">Leveransadress*</label><br>
-        <input v-model="shippingAddress.street" class="deliveryinput" placeholder="bingovägen 33" type="text" name="deliveryadress" required>
+        <label for="deliveryadress">Delivery address*</label><br>
+        <input :value="user.address.street" class="deliveryinput"  type="text" name="deliveryadress" required>
         <span  class="flex">
           <div>
-            <label for="town">Stad*</label>
-            <input v-model="shippingAddress.city" type="text" placeholder="Mallis" name="town" required>
+            <label for="town">City*</label>
+            <input :value="user.address.city" type="text" placeholder="Mallis" name="town" required>
           </div>
           <div>
-            <label for="postalcode">Postkod*</label>
-            <input v-model="shippingAddress.zip" type="text" minlength="5" maxlength="5" placeholder="12345" name="postalcode" required>
+            <label for="postalcode">Zip*</label>
+            <input :value="user.address.zip" type="text" minlength="5" maxlength="5" placeholder="12345" name="postalcode" required>
           </div>
         </span>
         <div class="divider"></div>
         <div class="radiobuttons">
-          <h1>Hur vill du betala</h1>
+          <h1>How would you like to pay</h1>
           <span>
             <input checked="checked" type="radio" name="payment" id="card" value="card">
-            <label for="card">Med kort</label>
+            <label for="card">Card</label>
             <i><img src="@/assets/images/credit-card-solid.svg"></i>
           </span>
           <div class="divider-small"></div>
           <span>
             <input type="radio" name="payment" id="invoice" value="invoice">
-            <label for="invoice">Faktura </label>
-            <p>Betala om 30 dagar</p>
+            <label for="invoice">Invoice </label>
+            <p>Pay in 30 days</p>
           </span>
           <div class="divider-small"></div>
           <span>
@@ -54,42 +54,42 @@
         </div>
       </div>
       <div class="form-content" v-else>
-        <h1>Slutför din beställning</h1>
+        <h1>Complete your order</h1>
         <span class="flex">
           <div>
-            <label for="firstname">Name</label>
-            <input type="text" name="name" :value="userName[0]">
+            <label for="firstname">First name</label>
+            <input type="text" name="name">
           </div>
           <div>
-            <label for="lastname">Efternamn</label>
-            <input type="text" name="lastname" :value="userName[1]">
+            <label for="lastname">Last name</label>
+            <input type="text" name="lastname">
           </div>
         </span>
-        <label for="deliveryadress">Leveransadress*</label><br>
-        <input class="deliveryinput" :value="user.address.street" type="text" name="deliveryadress" required>
+        <label for="deliveryadress">Delivery address*</label><br>
+        <input class="deliveryinput" type="text" name="deliveryadress" required>
         <span  class="flex">
           <div>
-            <label for="town">Stad*</label>
-            <input type="text" :value="user.address.city" name="town" required>
+            <label for="town">City*</label>
+            <input type="text" name="town" required>
           </div>
           <div>
-            <label for="postalcode">Postkod*</label>
-            <input type="text" :value="user.address.zip" minlength="5" maxlength="5" placeholder="12345" name="postalcode" required>
+            <label for="postalcode">Zip*</label>
+            <input type="text" minlength="5" maxlength="5" placeholder="12345" name="postalcode" required>
           </div>
         </span>
         <div class="divider"></div>
         <div class="radiobuttons">
-          <h1>Hur vill du betala</h1>
+          <h1>How would you like to pay</h1>
           <span>
             <input checked="checked" type="radio" name="payment" id="card" value="card">
-            <label for="card">Med kort</label>
+            <label for="card">Card</label>
             <i><img src="@/assets/images/credit-card-solid.svg"></i>
           </span>
           <div class="divider-small"></div>
           <span>
             <input type="radio" name="payment" id="invoice" value="invoice">
-            <label for="invoice">Faktura </label>
-            <p>Betala om 30 dagar</p>
+            <label for="invoice">Invoice </label>
+            <p>Pay in 30 days</p>
           </span>
           <div class="divider-small"></div>
           <span>
@@ -98,7 +98,7 @@
           </span> 
         </div>
       </div>
-        <button>Slutför köpet</button>
+        <button>Complete transaction</button>
     </form>
   </main>
 </template>
@@ -125,10 +125,20 @@ export default {
       return this.$store.state.error.messageOnPage
     },
     user(){
-      return this.$store.state.user
+      if(typeof this.$store.state.user != "undefined"){
+        return this.$store.state.user
+      }
+      else{
+        return null
+      }
     },
     userName(){
-      return this.user.name.split(' ')
+      if(this.user){
+        return this.user.name.split(' ')
+      }
+      else{
+        return null
+      }
     }
   },
   methods: {

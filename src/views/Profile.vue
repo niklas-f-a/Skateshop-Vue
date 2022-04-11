@@ -23,7 +23,7 @@ export default {
   computed: {
     user(){
       return this.$store.state.user
-    }, 
+    },
     orders(){
       return this.$store.state.orders
     }
@@ -37,18 +37,14 @@ main{
   width: 100%;
   height: 100%;
   background-color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   padding: 3rem 5rem;
   h1{
-    margin-bottom: 1rem;
+    margin: 1rem;
   }
   .my-account{
-    width: 100%;
+    max-width: 70%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    
+    grid-template-columns: 1fr 20rem;
   }
   .order-history{
       h2{

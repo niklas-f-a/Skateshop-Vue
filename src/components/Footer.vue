@@ -4,28 +4,28 @@
         <img :src="logoPortrait">
       </figure>
       <div class="about-us">
-        <h5>Om oss</h5>
+        <h5>About us</h5>
         <ul>
-          <li>Om oss</li>
-          <li>Jobba med oss</li>
-          <li>Hållbarhet</li>
-          <li>Våra butiker</li>
+          <li>about us</li>
+          <li>work with us</li>
+          <li>Sustainability</li>
+          <li>Shops</li>
         </ul>
       </div>
       <div class="customer-service">
-        <h5>Kundtjänst</h5>
+        <h5>Customer service</h5>
         <ul>
           <li>FAQ</li>
-          <li>Kontakt</li>
+          <li>Contact</li>
         </ul>
       </div>
       <div class="my-pages">
-        <h5>Mina sidor</h5>
+        <h5>My pages</h5>
         <ul>
-          <li>Mina beställningar</li>
-          <li>Mina betalningar</li>
-          <li>Mina erbjudanden</li>
-          <li>Min Profil</li>
+          <li>Orders</li>
+          <li>Payments</li>
+          <li>Offers</li>
+          <li>Profile</li>
         </ul>
       </div>
   </footer>

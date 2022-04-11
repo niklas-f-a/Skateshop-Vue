@@ -27,11 +27,11 @@ export default {
 				this.skateCategory.forEach( category =>  this.$store.dispatch(Action.GET_CATEGORY, category))
 				next()
 		}
-		if(this.categoryTitle == 'Kläder'){
+		if(this.categoryTitle == 'Apparel'){
 				this.apparel.forEach( category => this.$store.dispatch(Action.GET_CATEGORY, category))
 				next()
 		}
-		if(this.categoryTitle == 'Tillbehör'){
+		if(this.categoryTitle == 'Accessories'){
 				this.accessories.forEach( category => this.$store.dispatch(Action.GET_CATEGORY, category))
 				next()
 		}
@@ -46,10 +46,10 @@ export default {
 		if(this.categoryTitle == 'Skateboards'){
 			this.skateCategory.forEach( category =>  this.$store.dispatch(Action.GET_CATEGORY, category))
 		}
-		if(this.categoryTitle == 'Kläder'){
+		if(this.categoryTitle == 'Apparel'){
 			this.apparel.forEach( category => this.$store.dispatch(Action.GET_CATEGORY, category))
 		}
-		if(this.categoryTitle == 'Tillbehör'){
+		if(this.categoryTitle == 'Accessories'){
 			this.accessories.forEach( category => this.$store.dispatch(Action.GET_CATEGORY, category))
 		}
 		if(this.categoryTitle == 'Special-Edition'){
@@ -61,10 +61,10 @@ export default {
 			if(this.categoryTitle == 'Skateboards'){
 				return this.$store.getters.skateBoardsAndWheels
 			}
-			if(this.categoryTitle == 'Kläder'){
+			if(this.categoryTitle == 'Apparel'){
 				return this.$store.getters.apparel
 			}
-			if(this.categoryTitle == 'Tillbehör'){
+			if(this.categoryTitle == 'Accessories'){
 				return this.$store.getters.accessories
 			}
 			if(this.categoryTitle == 'Special-Edition'){

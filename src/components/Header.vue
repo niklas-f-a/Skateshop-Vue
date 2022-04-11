@@ -5,7 +5,7 @@
         <img :src="logo" alt="">
       </figure>
       <div class="search-bar">
-        <input type="search" placeholder="Sök efter...">
+        <input type="search" placeholder="Search for...">
         <i><img :src="searchIcon"></i>
       </div>
       <span v-if="!loggedIn" 
@@ -22,8 +22,8 @@
     <nav>
       <router-link to="/">Home</router-link>
       <router-link :to="{name: 'Products', params:{category: 'Skateboards'}}">Skatebording</router-link>
-      <router-link :to="{name: 'Products', params:{category: 'Kläder'}}">Kläder</router-link>
-      <router-link :to="{name: 'Products', params:{category: 'Tillbehör'}}">Tillbehör</router-link>
+      <router-link :to="{name: 'Products', params:{category: 'Apparel'}}">Clothes</router-link>
+      <router-link :to="{name: 'Products', params:{category: 'Accessories'}}">Accessories</router-link>
       <router-link :to="{name: 'Products', params:{category: 'Special-Edition'}}">Special Edition</router-link>
     </nav>
   </header>
