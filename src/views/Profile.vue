@@ -1,13 +1,13 @@
 <template>
 <main>
-  <h1>Hello {{user.name}}</h1>
   <section class="my-account">
+  <h1>Hello {{user.name}}</h1>
     <UserInfoSection :user="user"/>
-    <section class="order-history">
+  </section>
+  <section class="order-history">
       <h2>Orders</h2>
       <OrderComponent v-for="order in orders" :key="order.id" :order="order" />
     </section>
-  </section>
 </main>
 </template>
 
@@ -34,22 +34,15 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/styles/fonts-colors.scss";
 main{
-  width: 100%;
+  width: 80%;
   height: 100%;
-  background-color: #FFFFFF;
-  padding: 3rem 5rem;
+  padding: 5rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
   h1{
-    margin: 1rem;
-  }
-  .my-account{
-    max-width: 70%;
-    display: grid;
-    grid-template-columns: 1fr 20rem;
-  }
-  .order-history{
-      h2{
-        margin-bottom: 1rem;
-      }
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
 }
 </style>

@@ -45,7 +45,10 @@
           type="text" name="zip"
         >
         <small>{{error.zip}}</small>
-        <button>Update</button>
+        <span>
+          <button>Update</button>
+          <button @click="toggleEditInfo">Cancel</button>
+        </span>
       </form>
     </article>
     <article v-else class="contact-info">
@@ -188,5 +191,16 @@ button{
 form{
   display: flex;
   flex-direction: column;
+}
+span{
+  margin-top: 1rem;
+  button:last-child{
+    background-color: transparent;
+    border: 1px solid $black;
+    &:hover{
+      background-color: $black;
+      color: $orange;
+    }
+  }
 }
 </style>
